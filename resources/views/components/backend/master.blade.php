@@ -128,9 +128,9 @@
                 </a>
                 <ul id="categories-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href={{ route('categories.index') }}>
+                        <a href={{ route('categories.index') }}>
                             <i class="bi bi-circle-fill"></i><span>Category List</span>
-                        </a> --}}
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -209,7 +209,7 @@
     </aside><!-- End Sidebar-->
 
     {{ $slot }}
-    
+
     <main id="main" class="main">
 
     </main>
