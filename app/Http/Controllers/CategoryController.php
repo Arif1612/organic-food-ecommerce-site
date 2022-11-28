@@ -19,6 +19,22 @@ class CategoryController extends Controller
         $category = Category::find($id);
         return view('backend.categories.show', compact('category'));
     }
+    public function create()
+    {
+        return view('backend.categories.create');
+    }
+    public function store(Request $request)
+    {
+        $formData = [
+            'name' => $request->name,
+            "is_active" => $request->isActive ? true : false
+        ];
+
+        Category::create($formData);
+        return redirect()
+            ->route('categories.create')
+            ->withMessage('Successfully Created');
+    }
     public function destroy($id)
     {
         $category = Category::find($id);
@@ -26,9 +42,5 @@ class CategoryController extends Controller
         return redirect()
             ->route('categories.index')
             ->withMessage('Successfully Deleted');
-    }
-    public function create()
-    {
-        return view('backend.categories.create');
     }
 }

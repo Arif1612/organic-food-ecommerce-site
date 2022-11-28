@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
