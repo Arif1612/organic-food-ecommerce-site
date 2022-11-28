@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- for all title --}}
     <title>{{ $title ?? 'dashboard' }}</title>
+
     <link href={{ asset('assets/backend/resources/favicon.png') }} rel="icon">
     <!-- Bootstrap CSS (CDN)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -208,10 +210,10 @@
         </ul>
     </aside><!-- End Sidebar-->
 
-    {{ $slot }}
+
 
     <main id="main" class="main">
-
+        {{ $slot }}
     </main>
 
     <!-- ======= Footer ======= -->
