@@ -1,6 +1,6 @@
 <x-backend.master>
     <x-slot:title>
-        Create New Category
+        Edit Category
     </x-slot:title>
 
 
@@ -17,10 +17,9 @@
         </div>
     </div>
 
-    {{--
     @if (session('message'))
         <span class="text-success">{{ session('message') }}</span>
-    @endif --}}
+    @endif
 
 
     {{-- @if ($errors->any())
@@ -33,19 +32,23 @@
         </div>
     @endif --}}
 
-    <form action=" {{ route('categories.store') }} " method="post">
+    <form action=" {{ route('categories.update', $category->id) }} " method="post">
         @csrf
+        @method('patch')
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input name="name" type="text" class="form-control @error('name') is-invalid @enderror "
-                id="name" unique >
+                id="name" value=" {{ $category->name }} ">
+
+
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
 
         </div>
         <div class="mb-3 form-check">
-            <input name="is_active" type="checkbox" class="form-check-input" id="is_active">
+            <input name="is_active" type="checkbox" class="form-check-input" id="is_active"
+                @if ($category->is_active) @checked(true) @endif>
             <label class="form-check-label" for="is_active">Is Active</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

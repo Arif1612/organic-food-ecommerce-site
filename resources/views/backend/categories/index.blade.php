@@ -46,9 +46,16 @@
                     <td> {{ $loop->iteration }} </td>
                     <td> {{ $category->name }} </td>
                     <td>
-                        <a href=" {{ route('categories.show', $category->id) }} ">Show |</a>
-                        <a href="">Edit | </a>
-                        <a href=" {{ route('categories.destroy', $category->id) }} ">Delete</a>
+                        <a class="btn btn-success" href=" {{ route('categories.show', $category->id) }} ">Show</a> |
+                        <a class="btn btn-warning" href="{{ route('categories.edit', $category->id) }}">Edit </a> |
+                        <form action="{{ route('categories.destroy', $category->id) }}" method="post"
+                            style="display: inline">
+                            @csrf
+                            @method('delete')
+                            <button type="button" class="btn btn-danger">Danger</button>
+
+                        </form>
+
                     </td>
                 </tr>
             @endforeach
