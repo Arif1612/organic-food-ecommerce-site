@@ -35,15 +35,8 @@
 
     <form action=" {{ route('categories.store') }} " method="post">
         @csrf
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror "
-                id="name" unique >
-            @error('name')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+        <x-forms.input name="name" placeholder="give your category name" />
 
-        </div>
         <div class="mb-3 form-check">
             <input name="is_active" type="checkbox" class="form-check-input" id="is_active">
             <label class="form-check-label" for="is_active">Is Active</label>
