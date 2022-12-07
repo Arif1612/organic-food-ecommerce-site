@@ -37,7 +37,6 @@ class CategoryController extends Controller
             "is_active" => $request->is_active ? true : false
         ];
 
-        // dd($formData);
 
         Category::create($formData);
         return redirect()

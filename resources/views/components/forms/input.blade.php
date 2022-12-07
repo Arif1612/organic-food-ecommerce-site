@@ -1,8 +1,9 @@
-@props(['name'])
+@props(['name', 'type'])
 
 <div class="mb-3">
-    <label name=" {{ $name }} " for=" {{ $name }} " class="form-label">Name</label>
-    <input name=" {{ $name }} " type="text" id="{{ $name }} "
+    <label name="{{ $name }}" for="{{ $name }}" class="form-label">{{ ucwords($name) }} </label>
+
+    <input name="{{ $name }}" type="{{ $type }}" id="{{ $name }}"
         {{ $attributes->merge(['class' => 'form-control']) }} unique>
 
     @error($name)

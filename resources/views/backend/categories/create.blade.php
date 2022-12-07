@@ -17,30 +17,16 @@
         </div>
     </div>
 
-    {{--
-    @if (session('message'))
-        <span class="text-success">{{ session('message') }}</span>
-    @endif --}}
-
-
-    {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif --}}
+    {{-- all error message shown here --}}
+    <x-forms.errors />
 
     <form action=" {{ route('categories.store') }} " method="post">
         @csrf
-        <x-forms.input name="name" placeholder="give your category name" />
+        {{-- all type of input expect some we can give from here --}}
+        <x-forms.input name="name" type="text" placeholder="give your category name" />
+        {{-- checkbox compoent ar jonno --}}
+        <x-forms.checkbox name="name" />
 
-        <div class="mb-3 form-check">
-            <input name="is_active" type="checkbox" class="form-check-input" id="is_active">
-            <label class="form-check-label" for="is_active">Is Active</label>
-        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

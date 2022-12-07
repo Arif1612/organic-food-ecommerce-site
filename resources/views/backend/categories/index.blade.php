@@ -27,9 +27,8 @@
         </div>
     </div>
 
-    @if (session('message'))
-        <p class="text-success"> {{ session('message') }}</p>
-    @endif
+    {{-- Message shown here --}}
+    <x-forms.message />
 
     <table class="table">
         <thead>
@@ -48,11 +47,12 @@
                     <td>
                         <a class="btn btn-success" href=" {{ route('categories.show', $category->id) }} ">Show</a> |
                         <a class="btn btn-warning" href="{{ route('categories.edit', $category->id) }}">Edit </a> |
+
                         <form action="{{ route('categories.destroy', $category->id) }}" method="post"
                             style="display: inline">
                             @csrf
                             @method('delete')
-                            <button type="button" class="btn btn-danger">Danger</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
 
                         </form>
 
