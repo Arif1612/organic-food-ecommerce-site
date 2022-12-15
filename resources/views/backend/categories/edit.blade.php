@@ -21,24 +21,11 @@
         <span class="text-success">{{ session('message') }}</span>
     @endif
 
-
-    {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif --}}
-
     <form action=" {{ route('categories.update', $category->id) }} " method="post">
         @csrf
         @method('patch')
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror "
-                id="name" value=" {{ $category->name }} ">
+            <x-forms.input name="name" type="text" :value="old('name', $category->name)" placeholder="give your category name" />
 
 
             @error('name')
@@ -46,11 +33,22 @@
             @enderror
 
         </div>
-        <div class="mb-3 form-check">
-            <input name="is_active" type="checkbox" class="form-check-input" id="is_active"
-                @if ($category->is_active) @checked(true) @endif>
-            <label class="form-check-label" for="is_active">Is Active</label>
-        </div>
+
+        @php
+
+            $checklist = ['Is Active ?'];
+
+            if ($category->is_active) {
+                $checkedItems = [0];
+            } else {
+                $checkedItems = [];
+            }
+
+        @endphp
+
+        <x-forms.checkbox name="is_active" :checklist="$checklist" :checkedItems="$checkedItems" />
+
+    
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

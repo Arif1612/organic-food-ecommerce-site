@@ -22,10 +22,14 @@
 
     <form action=" {{ route('categories.store') }} " method="post">
         @csrf
-        {{-- all type of input expect some we can give from here --}}
+
         <x-forms.input name="name" type="text" placeholder="give your category name" />
-        {{-- checkbox compoent ar jonno --}}
-        <x-forms.checkbox name="name" />
+
+        @php
+            $checklist = ['Is Active ?'];
+        @endphp
+
+        <x-forms.checkbox name="is_active" :checklist="$checklist" />
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
