@@ -24,15 +24,16 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:03|max:255|unique:categories,name'
+            'name' => 'required|min:03|max:255|unique:categories,name' . $this->id,
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'name.required' => 'A name is required',
 
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'name.required' => 'A name is required',
+    //     ];
+    // }
 }

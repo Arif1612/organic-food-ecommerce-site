@@ -17,16 +17,18 @@
         </div>
     </div>
 
-    @if (session('message'))
-        <span class="text-success">{{ session('message') }}</span>
-    @endif
+    <x-forms.errors />
 
     <form action=" {{ route('categories.update', $category->id) }} " method="post">
         @csrf
         @method('patch')
         <div class="mb-3">
-            <x-forms.input name="name" type="text" :value="old('name', $category->name)" placeholder="give your category name" />
+            <x-forms.input name="name" label="Categories Name" type="text" :value="old('name', $category->name)"
+                placeholder="give your category name" />
 
+            <img src="{{ asset('storage/categories/' . $category->image) }}" height="250" />
+            
+            <x-forms.input name="image" type="file" label="Picture" />
 
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -48,7 +50,7 @@
 
         <x-forms.checkbox name="is_active" :checklist="$checklist" :checkedItems="$checkedItems" />
 
-    
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

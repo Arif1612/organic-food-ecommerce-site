@@ -32,9 +32,21 @@ class CategoryController extends Controller
     }
     public function store(CategoryRequest $request)
     {
+
+        $originalName = $request->file('image')->getClientOriginalName();
+        // dd($originalName);
+        $fileName = date('Y-m-d ') . time() . $originalName;
+        $request->file('image')->move(storage_path('app/public/categories'), $fileName);
+
+
+        // dd($fileName);
+        // dd($request->file('image'));
+
+
         $formData = [
             'name' => $request->name,
-            "is_active" => $request->is_active ? true : false
+            "is_active" => $request->is_active ? true : false,
+            'image' => $fileName
         ];
 
 
@@ -43,14 +55,19 @@ class CategoryController extends Controller
             ->route('categories.index')
             ->withMessage('Successfully Created');
     }
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        // dd($id);
+        dd($request);
+        $originalName = $request->file('image')->getClientOriginalName();
+        $fileName = date('Y-m-d ') . time() . $originalName;
+        $request->file('image')->move(storage_path('app/public/categories'), $fileName);
+
         $category = Category::find($id);
 
         $formData = [
             'name' => $request->name,
-            "is_active" => $request->is_active ? true : false
+            "is_active" => $request->is_active ? true : false,
+            "image" => $fileName
         ];
         $category->update($formData);
         return redirect()
