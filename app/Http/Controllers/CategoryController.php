@@ -57,18 +57,20 @@ class CategoryController extends Controller
     }
     public function update(CategoryRequest $request, $id)
     {
-        dd($request);
-        $originalName = $request->file('image')->getClientOriginalName();
-        $fileName = date('Y-m-d ') . time() . $originalName;
-        $request->file('image')->move(storage_path('app/public/categories'), $fileName);
-
+        // dd($request->all());
         $category = Category::find($id);
 
         $formData = [
             'name' => $request->name,
             "is_active" => $request->is_active ? true : false,
-            "image" => $fileName
         ];
+        if ($request->hasFile('image')) {
+            $originalName = $request->file('image')->getClientOriginalName();
+            $fileName = date('Y-m-d ') . time() . $originalName;
+            $request->file('image')->move(storage_path('app/public/categories'), $fileName);
+            $formData['image'] = $fileName;
+        }
+
         $category->update($formData);
         return redirect()
             ->route('categories.index')

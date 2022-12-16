@@ -19,7 +19,7 @@
 
     <x-forms.errors />
 
-    <form action=" {{ route('categories.update', $category->id) }} " method="post">
+    <form action=" {{ route('categories.update', $category->id) }} " method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="mb-3">
@@ -27,7 +27,7 @@
                 placeholder="give your category name" />
 
             <img src="{{ asset('storage/categories/' . $category->image) }}" height="250" />
-            
+
             <x-forms.input name="image" type="file" label="Picture" />
 
             @error('name')
