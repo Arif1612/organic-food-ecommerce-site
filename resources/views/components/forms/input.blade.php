@@ -7,7 +7,7 @@
 
 
     <input name="{{ $name }}" type="{{ $type }}" id="{{ $name }}"
-        @if ($value != null || $value != '') value="{{ $value }}" @endif
+        @if ($value != null || $value != '') value="{{ $value }}" @endif 
         {{ $attributes->merge(['class' => 'form-control']) }} unique>
 
     @error($name)

@@ -31,6 +31,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+// Softdelte Route
+Route::get('/categories-trash', [CategoryController::class, 'trash'])->name('categories.trash');
+Route::get('/categories/{id}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
+Route::delete('/categories/{id}/permanent/delete', [CategoryController::class, 'delete'])->name('categories.delete');
+Route::get('/categories/{id}/softDeleteShow', [CategoryController::class, 'softDeleteShow'])->name('categories.softDeleteShow');
+
+// Categories Crud route
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');

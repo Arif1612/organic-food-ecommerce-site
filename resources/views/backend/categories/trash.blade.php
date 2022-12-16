@@ -14,8 +14,8 @@
                 </a>
 
                 <button type="button" class="btn btn-sm btn-outline-secondary">Excel</button>
-                <a href="{{ route('categories.trash') }}">
-                    <button type="button" class="btn btn-sm btn-outline-danger">Trash</button>
+                <a href="{{ route('categories.index') }}">
+                    <button type="button" class="btn btn-sm btn-outline-success">List</button>
                 </a>
             </div>
             <a href="{{ route('categories.create') }}">
@@ -45,14 +45,17 @@
                     <td> {{ $loop->iteration }} </td>
                     <td> {{ $category->name }} </td>
                     <td>
-                        <a class="btn btn-success" href=" {{ route('categories.show', $category->id) }} ">Show</a> |
-                        <a class="btn btn-warning" href="{{ route('categories.edit', $category->id) }}">Edit </a> |
+                        <a class="btn btn-success"
+                            href=" {{ route('categories.softDeleteShow', $category->id) }} ">Show</a> |
+                        <a class="btn btn-warning" href="{{ route('categories.restore', $category->id) }}">Restore </a>
+                        |
 
-                        <form action="{{ route('categories.destroy', $category->id) }}" method="post"
-                            style="display: inline">
+                        <form action=" {{ route('categories.delete', $category->id) }} " method="post"
+                            style="display: inline" enctype="multipart/form-data">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('File will be permanently deleted')">Delete</button>
 
                         </form>
 

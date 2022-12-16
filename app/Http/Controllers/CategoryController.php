@@ -8,6 +8,40 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    // softdelets
+    public function trash()
+    {
+        $categories = Category::onlyTrashed()->get();
+        return view('backend.categories.trash', compact('categories'));
+    }
+
+    public function restore($id)
+    {
+        $category = Category::onlyTrashed()->find($id);
+        $category->restore();
+        return redirect()
+            ->route('categories.trash')
+            ->withMessage('Successfully Restored');
+    }
+
+    public function delete($id)
+    {
+        $category = Category::onlyTrashed()->find($id);
+        $category->forceDelete();
+        return redirect()
+            ->route('categories.trash')
+            ->withMessage('Successfully Deleted');
+    }
+
+    public function softDeleteShow($id)
+    {
+        $category = Category::onlyTrashed()->find($id);
+        return view('backend.categories.softDeleteShow', compact('category'));
+    }
+
+
+    // categories main crud started
+
     public function index()
     {
         $categories = Category::all();
