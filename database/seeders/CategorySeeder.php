@@ -13,6 +13,7 @@ class CategorySeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         // DB::table('categories')->insert([

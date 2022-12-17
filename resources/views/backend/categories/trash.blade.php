@@ -15,7 +15,7 @@
 
                 <button type="button" class="btn btn-sm btn-outline-secondary">Excel</button>
                 <a href="{{ route('categories.index') }}">
-                    <button type="button" class="btn btn-sm btn-outline-success">List</button>
+                    <button type="button" class="btn btn-sm btn-outline-info">List</button>
                 </a>
             </div>
             <a href="{{ route('categories.create') }}">

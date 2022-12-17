@@ -64,18 +64,18 @@ class CategoryController extends Controller
         $category = Category::find($id);
         return view('backend.categories.edit', compact('category'));
     }
+
+    public function uploadImage($image)
+    {
+        $originalName = $image->getClientOriginalName();
+        $fileName = date('Y-m-d ') . time() . $originalName;
+        $image->move(storage_path('app/public/categories'), $fileName);
+        return $fileName;
+    }
     public function store(CategoryRequest $request)
     {
 
-        $originalName = $request->file('image')->getClientOriginalName();
-        // dd($originalName);
-        $fileName = date('Y-m-d ') . time() . $originalName;
-        $request->file('image')->move(storage_path('app/public/categories'), $fileName);
-
-
-        // dd($fileName);
-        // dd($request->file('image'));
-
+        $fileName = $this->uploadImage($request->file('image'));
 
         $formData = [
             'name' => $request->name,
@@ -92,19 +92,16 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         // dd($request->all());
-        $category = Category::find($id);
-
         $formData = [
             'name' => $request->name,
-            "is_active" => $request->is_active ? true : false,
+            "is_active" => $request->is_active ? true : false
         ];
+        // aikhane jodi image ta thake thahole formdata ar modde image ta upload krbe
         if ($request->hasFile('image')) {
-            $originalName = $request->file('image')->getClientOriginalName();
-            $fileName = date('Y-m-d ') . time() . $originalName;
-            $request->file('image')->move(storage_path('app/public/categories'), $fileName);
-            $formData['image'] = $fileName;
+            $formData['image'] = $this->uploadImage($request->file('image'));
         }
 
+        $category = Category::find($id);
         $category->update($formData);
         return redirect()
             ->route('categories.index')
