@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Image;
+
 
 class CategoryController extends Controller
 {
@@ -70,6 +72,12 @@ class CategoryController extends Controller
         $originalName = $image->getClientOriginalName();
         $fileName = date('Y-m-d ') . time() . $originalName;
         $image->move(storage_path('app/public/categories'), $fileName);
+
+        // Image::make($image)
+        //     ->resize(500, 500)
+        //     ->save(storage_path() . '/app/public/categories/' . $fileName);
+
+
         return $fileName;
     }
     public function store(CategoryRequest $request)
