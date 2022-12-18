@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    // fillable a amra j j column a data insert korte chai tha dia ditam
+    // protected $fillable = ['name', 'is_active', 'image'];
+    // r guarded a sob column ai data auto insert kora jabe konotai jodi data insert nhh kore thahole oita ulta dia dibo
+    protected $guarded = [];
 }

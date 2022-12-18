@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -52,5 +53,5 @@ Route::patch('/categories/{id}/update', [CategoryController::class, 'update'])->
 
 
 // Resource Route
-
+Route::resource('products', ProductController::class);
 Route::resource('brands', BrandController::class);

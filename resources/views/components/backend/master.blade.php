@@ -157,9 +157,9 @@
                 </a>
                 <ul id="products-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href={{ route('products.index') }}>
+                        <a href={{ route('products.index') }}>
                             <i class="bi bi-circle-fill"></i><span>Product List</span>
-                        </a> --}}
+                        </a>
                     </li>
                 </ul>
             </li>
