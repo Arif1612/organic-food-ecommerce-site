@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/categories/pdf', [CategoryController::class, 'downloadPdf'])->name('categories.pdf');
+Route::get('/categories/excel', [CategoryController::class, 'downloadExcel'])->name('categories.excel');
 
 // Softdelte Route
 Route::get('/categories-trash', [CategoryController::class, 'trash'])->name('categories.trash');

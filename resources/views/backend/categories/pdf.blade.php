@@ -3,7 +3,7 @@
         <tr>
             <th>$SL</th>
             <th>Name</th>
-            {{-- <th>Image</th> --}}
+            <th>Image</th>
         </tr>
     </thead>
 
@@ -12,7 +12,8 @@
             <tr>
                 <td> {{ $loop->iteration }} </td>
                 <td> {{ $category->name }} </td>
-                {{-- <td> <img width="200px" src="{{ asset('storage/categories/' . $category->image) }}" alt=""></td> --}}
+                <td> <img width="200px" src="{{ public_path('storage/categories/' . $category->image) }}" alt="">
+                </td>
 
             </tr>
         @endforeach

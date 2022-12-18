@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CategoriesExport;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Image;
+use Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
@@ -16,6 +18,10 @@ class CategoryController extends Controller
         $categories = Category::all();
         $pdf = Pdf::loadView('backend.categories.pdf', compact('categories'));
         return $pdf->download('CategoryDetails.pdf');
+    }
+    public function downloadExcel()
+    {
+        return Excel::download(new CategoriesExport, 'categories.xlsx');
     }
     // softdelets
     public function trash()

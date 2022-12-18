@@ -12,8 +12,11 @@
                 <a href="{{ route('categories.pdf') }}">
                     <button type="button" class="btn btn-sm btn-outline-success">PDF</button>
                 </a>
+                <a href="{{ route('categories.excel') }}">
+                    <button type="button" class="btn btn-sm btn-outline-success">Excel</button>
+                </a>
 
-                <button type="button" class="btn btn-sm btn-outline-secondary">Excel</button>
+
                 <a href="{{ route('categories.trash') }}">
                     <button type="button" class="btn btn-sm btn-outline-danger">Trash</button>
                 </a>
