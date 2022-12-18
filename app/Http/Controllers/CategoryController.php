@@ -6,10 +6,17 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Image;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class CategoryController extends Controller
 {
+    function downloadPdf()
+    {
+        $categories = Category::all();
+        $pdf = Pdf::loadView('backend.categories.pdf', compact('categories'));
+        return $pdf->download('CategoryDetails.pdf');
+    }
     // softdelets
     public function trash()
     {

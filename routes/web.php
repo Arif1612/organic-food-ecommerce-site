@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/categories/pdf', [CategoryController::class, 'downloadPdf'])->name('categories.pdf');
+
 // Softdelte Route
 Route::get('/categories-trash', [CategoryController::class, 'trash'])->name('categories.trash');
 Route::get('/categories/{id}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
@@ -45,3 +48,8 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 Route::delete('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::patch('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+
+
+// Resource Route
+
+Route::resource('brands', BrandController::class);
