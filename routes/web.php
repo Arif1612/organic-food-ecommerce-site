@@ -51,6 +51,11 @@ Route::delete('/categories/{id}/delete', [CategoryController::class, 'destroy'])
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::patch('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 
+// products
+
+
+Route::get('/products/pdf', [ProductController::class, 'downloadPdf'])->name('products.pdf');
+Route::get('/products/excel', [ProductController::class, 'downloadExcel'])->name('products.excel');
 
 // Resource Route
 Route::resources([

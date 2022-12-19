@@ -8,11 +8,11 @@
     </thead>
 
     <tbody>
-        @foreach ($categories as $category)
+        @foreach ($products as $product)
             <tr>
                 <td> {{ $loop->iteration }} </td>
-                <td> {{ $category->name }} </td>
-                <td> <img width="200px" src="{{ public_path('storage/categories/' . $category->image) }}" alt="">
+                <td> {{ $product->name }} </td>
+                <td> <img width="200px" src="{{ public_path('storage/products/' . $product->image) }}" alt="">
                 </td>
 
             </tr>
