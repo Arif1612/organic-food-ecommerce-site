@@ -64,4 +64,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $products->links() }}
 </x-backend.master>

@@ -53,5 +53,10 @@ Route::patch('/categories/{id}/update', [CategoryController::class, 'update'])->
 
 
 // Resource Route
-Route::resource('products', ProductController::class);
-Route::resource('brands', BrandController::class);
+Route::resources([
+    'products' => ProductController::class,
+    'brands' => BrandController::class,
+]);
+
+// Route::resource('products', ProductController::class);
+// Route::resource('brands', BrandController::class);
