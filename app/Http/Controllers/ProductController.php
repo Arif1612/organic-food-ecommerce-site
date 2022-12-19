@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -20,6 +22,45 @@ class ProductController extends Controller
         $pdf = Pdf::loadView('backend.products.pdf', compact('products'));
         return $pdf->download('ProductDetails.pdf');
     }
+
+    public function downloadExcel()
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+    public function trash()
+    {
+        // $products = Product::all();
+        $products = Product::onlyTrashed()->get();
+        return view('backend.products.trash', compact('products'));
+    }
+
+    public function softDeleteShow($id)
+    {
+        $product = Product::onlyTrashed()->find($id);
+        return view('backend.products.softDeleteShow', compact('product'));
+    }
+
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->find($id);
+        $product->restore();
+        return redirect()
+            ->route('products.trash')
+            ->withMessage('Successfully Restored');
+    }
+
+    public function delete($id)
+    {
+        $category = Product::onlyTrashed()->find($id);
+        $category->forceDelete();
+        return redirect()
+            ->route('products.trash')
+            ->withMessage('Successfully Deleted');
+    }
+
+
+    // Main Product CRUD Started
     public function index()
     {
         $products = Product::latest()->paginate(10);
@@ -111,8 +152,8 @@ class ProductController extends Controller
             $formData['image'] = $this->uploadImage($request->file('image'));
         }
 
-        $category = Product::find($id);
-        $category->update($formData);
+        $product = Product::find($id);
+        $product->update($formData);
         return redirect()
             ->route('products.index')
             ->withMessage('Successfully Updated');

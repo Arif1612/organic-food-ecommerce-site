@@ -12,13 +12,13 @@
                 <a href="{{ route('products.pdf') }}">
                     <button type="button" class=" btn-sm btn-outline-success">{{ __('PDF') }} </button>
                 </a>
-                {{-- <a href="{{ route('products.excel') }}"> --}}
-                <button type="button" class="btn btn-sm btn-outline-info">{{ __('Excel') }}</button>
+                <a href="{{ route('products.excel') }}">
+                    <button type="button" class="btn btn-sm btn-outline-info">{{ __('Excel') }}</button>
                 </a>
                 {{-- anra jodi akadhik language use korte chai tokhon  {{-- ()}} aitar vitore ja thakbe tha akadhik language a use kora jabe --}}
 
-                {{-- <a href="{{ route('products.trash') }}"> --}}
-                <button type="button" class="btn btn-sm btn-outline-danger">{{ __('Trash') }} </button>
+                <a href="{{ route('products.trash') }}">
+                    <button type="button" class="btn btn-sm btn-outline-danger">{{ __('Trash') }} </button>
                 </a>
             </div>
             <a href="{{ route('products.create') }}">
