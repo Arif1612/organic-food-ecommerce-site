@@ -219,7 +219,9 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            Copyright &copy; 2022 All Rights Reserved <strong><span>Batch-007</span></strong>
+            &copy; 2022 All Rights Reserved <strong><span>Md. Arif Ul islam </span></strong> <strong><span
+                    class="text-info">Helping Hand:
+                </span> <span>Abrar the Boss</span></strong>
         </div>
     </footer><!-- End Footer -->
 

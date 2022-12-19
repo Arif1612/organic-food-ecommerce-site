@@ -1,17 +1,17 @@
 <x-backend.master>
     <x-slot:title>
-        Create New Category
+        {{ __('Create New Product') }}
     </x-slot:title>
 
 
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Categories</h1>
+        <h1 class="h2">{{ __('Products') }}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{ route('categories.index') }}">
+            <a href="{{ route('products.index') }}">
                 <button type="button" class="btn btn-sm btn-outline-info">
                     <span data-feather="list"></span>
-                    List
+                    {{ __('List') }}
                 </button>
             </a>
         </div>
@@ -20,10 +20,10 @@
     {{-- all error message shown here --}}
     <x-forms.errors />
 
-    <form action=" {{ route('categories.store') }} " method="post" enctype="multipart/form-data">
+    <form action=" {{ route('products.store') }} " method="post" enctype="multipart/form-data">
         @csrf
 
-        <x-forms.input name="name" type="text" label="Category Name" placeholder="give your category name"
+        <x-forms.input name="name" type="text" label="Product Name" placeholder="give your category name"
             :value="old('name')" />
         <x-forms.input name="price" type="number" label="Price" />
         <x-forms.input name="image" type="file" label="Picture" />

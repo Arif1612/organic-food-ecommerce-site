@@ -19,6 +19,9 @@
     <h1>Description: {{ $product->description }} </h1>
     <h1>Price: {{ $product->price }} </h1>
     <img width="200px" src="{{ $product->image }}" alt="">
+    <img width="200px" src="{{ asset('storage/products/' . $product->image) }}" alt="">
+
+    <h1>Is Available: {{ $product->is_active ? 'Yes' : 'No' }} </h1>
 
 
 

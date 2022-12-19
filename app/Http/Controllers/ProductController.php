@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::latest()->paginate(10);
         return view('backend.products.index', compact('products'));
     }
 
@@ -34,9 +35,37 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function uploadImage($image)
     {
-        //
+        $originalName = $image->getClientOriginalName();
+        $fileName = date('Y-m-d ') . time() . $originalName;
+        $image->move(storage_path('app/public/products'), $fileName);
+
+        // Image::make($image)
+        //     ->resize(500, 500)
+        //     ->save(storage_path() . '/app/public/categories/' . $fileName);
+
+
+        return $fileName;
+    }
+    public function store(ProductRequest $request)
+    {
+        $fileName = $this->uploadImage($request->file('image'));
+
+        $formData = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $fileName,
+            'is_active' => $request->is_active ? true : false,
+        ];
+
+
+        Product::create($formData);
+        return redirect()
+            ->route('products.index')
+            ->withMessage('Successfully Created');
     }
 
     /**
