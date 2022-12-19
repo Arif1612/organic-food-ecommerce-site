@@ -41,12 +41,6 @@ class ProductController extends Controller
         $originalName = $image->getClientOriginalName();
         $fileName = date('Y-m-d ') . time() . $originalName;
         $image->move(storage_path('app/public/products'), $fileName);
-
-        // Image::make($image)
-        //     ->resize(500, 500)
-        //     ->save(storage_path() . '/app/public/categories/' . $fileName);
-
-
         return $fileName;
     }
     public function store(ProductRequest $request)
@@ -85,9 +79,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('backend.products.edit', compact('product'));
     }
 
     /**
@@ -99,7 +93,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $formData = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'is_active' => $request->is_active ? true : false,
+        ];
+        // aikhane jodi image ta thake thahole formdata ar modde image ta upload krbe
+        if ($request->hasFile('image')) {
+            $formData['image'] = $this->uploadImage($request->file('image'));
+        }
+
+        $category = Product::find($id);
+        $category->update($formData);
+        return redirect()
+            ->route('products.index')
+            ->withMessage('Successfully Updated');
     }
 
     /**

@@ -1,14 +1,14 @@
 <x-backend.master>
     <x-slot:title>
-        Edit Category
+        Edit Product
     </x-slot:title>
 
 
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Categories</h1>
+        <h1 class="h2">Products</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{ route('categories.index') }}">
+            <a href="{{ route('products.index') }}">
                 <button type="button" class="btn btn-sm btn-outline-info">
                     <span data-feather="list"></span>
                     List
@@ -19,16 +19,21 @@
 
     <x-forms.errors />
 
-    <form action=" {{ route('categories.update', $category->id) }} " method="post" enctype="multipart/form-data">
+    <form action=" {{ route('products.update', $product->id) }} " method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="mb-3">
-            <x-forms.input name="name" label="Categories Name" type="text" :value="old('name', $category->name)"
-                placeholder="give your category name" />
+            <x-forms.input name="name" label="Products Name" type="text" :value="old('name', $product->name)"
+                placeholder="give your product name" />
 
-            <img src="{{ asset('storage/categories/' . $category->image) }}" height="250" />
+            <x-forms.input name="price" type="number" label="Price" :value="old('price', $product->price)" />
+
+
+            <img width="200px" src="{{ asset('storage/products/' . $product->image) }}" />
+            <img width="200px" src="{{ $product->image }}" alt="">
 
             <x-forms.input name="image" type="file" label="Picture" />
+            <x-forms.textarea name='description' label="Description" :value="old('description', $product->description)" cols="30" rows="5" />
 
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -38,9 +43,9 @@
 
         @php
 
-            $checklist = ['Is Active ?'];
+            $checklist = ['Is Available ?'];
 
-            if ($category->is_active) {
+            if ($product->is_active) {
                 $checkedItems = [0];
             } else {
                 $checkedItems = [];

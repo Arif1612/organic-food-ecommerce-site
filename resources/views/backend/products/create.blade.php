@@ -28,7 +28,7 @@
         <x-forms.input name="price" type="number" label="Price" />
         <x-forms.input name="image" type="file" label="Picture" />
 
-        <x-forms.textarea name='description' label="Description" cols="30" rows="5" />
+        <x-forms.textarea name='description' :value="old('description')" label="Description" cols="30" rows="5" />
 
         @php
             $checklist = ['Is Active ?'];
