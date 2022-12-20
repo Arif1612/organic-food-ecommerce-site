@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('is_active')->default(false);
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -26,6 +28,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('category_id');
             $table->dropColumn('is_active');
         });
     }
