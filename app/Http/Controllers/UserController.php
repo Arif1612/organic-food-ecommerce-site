@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.index');
+        $users = User::latest()->paginate(10);
+        return view('backend.users.index', compact('users'));
     }
 
     /**
@@ -43,9 +45,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('backend.users.show', compact('user'));
     }
 
     /**
