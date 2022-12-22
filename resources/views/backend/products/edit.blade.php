@@ -28,9 +28,11 @@
 
             <x-forms.input name="price" type="number" label="Price" :value="old('price', $product->price)" />
 
-
-            <img width="200px" src="{{ asset('storage/products/' . $product->image) }}" />
-            <img width="200px" src="{{ $product->image }}" alt="">
+            @if (substr($product->image, 0, 5) == 'https')
+                <img width="200px" src="{{ $product->image }}" alt="">
+            @else
+                <img width="200px" src="{{ asset('storage/products/' . $product->image) }}" />
+            @endif
 
             <x-forms.input name="image" type="file" label="Picture" />
             <x-forms.textarea name='description' label="Description" :value="old('description', $product->description)" cols="30" rows="5" />

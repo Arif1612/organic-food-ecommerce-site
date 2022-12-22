@@ -23,6 +23,8 @@
     <form action=" {{ route('products.store') }} " method="post" enctype="multipart/form-data">
         @csrf
 
+        <x-forms.select name="category_id" required label="Select Category" :options="$categories" />
+
         <x-forms.input name="name" type="text" label="Product Name" placeholder="give your category name"
             :value="old('name')" />
         <x-forms.input name="price" type="number" label="Price" />

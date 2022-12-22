@@ -6,10 +6,8 @@
     @endif
 
     <textarea name="{{ $name }}" id="{{ $name }}" rows="{{ $rows }}" cols="{{ $cols }}"
-        {{ $attributes->merge(['class' => 'form-control']) }}
-        @if ($value != null || $value != '') value="{{ $value }}" @endif>
+        {{ $attributes->merge(['class' => 'form-control']) }}>{{ $value }}</textarea>
 
-</textarea>
 
     @error($name)
         <div class="text-danger">{{ $message }}</div>

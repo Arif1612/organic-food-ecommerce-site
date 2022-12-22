@@ -16,6 +16,7 @@
     </div>
 
     <h1>Product Name: {{ $product->name }} </h1>
+    <h1>Category: {{ $product->category->name }} </h1>
     <h1>Description: {{ $product->description }} </h1>
     <h1>Price: {{ $product->price }} </h1>
     <img width="200px" src="{{ $product->image }}" alt="">

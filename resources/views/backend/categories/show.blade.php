@@ -21,6 +21,29 @@
     <img width="200px" src="{{ asset('storage/categories/' . $category->image) }}" alt="">
 
 
+    <h1>Products</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>SL#</th>
+                <th>Name</th>
+                <th>Picture</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($category->products as $product)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $product->name }}</td>
+                    <td><img width="50px" src="{{ asset('storage/products/' . $product->image) }}" alt="">
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+
+
 
 
 </x-backend.master>
