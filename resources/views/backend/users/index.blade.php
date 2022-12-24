@@ -29,8 +29,8 @@
                         <td>
                             <a class="btn btn-sm btn-info" href="{{ route('users.show', $user->id) }}">Show</a>
                             {{-- @can('update-role') --}}
-                            <a class="btn btn-sm btn-warning" href="{{ route('users.change_role', $user->id) }}">Change
-                                Role</a>
+                                <a class="btn btn-sm btn-warning" href="{{ route('users.change_role', $user->id) }}">Change
+                                    Role</a>
                             {{-- @endcan --}}
                         </td>
                     </tr>
