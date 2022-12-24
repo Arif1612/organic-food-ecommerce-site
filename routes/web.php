@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 require __DIR__ . '/auth.php';
 
 
@@ -75,8 +76,14 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'products' => ProductController::class,
         'brands' => BrandController::class,
-        'users' => UserController::class
     ]);
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::get('/{user}/change-role', [UserController::class, 'changeRole'])->name('users.change_role');
+        Route::patch('/{user}/change-role', [UserController::class, 'updateRole'])->name('users.update_role');
+    });
 
     // Route::resource('products', ProductController::class);
     // Route::resource('brands', BrandController::class);
