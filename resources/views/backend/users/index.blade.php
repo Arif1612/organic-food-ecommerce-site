@@ -28,10 +28,10 @@
                         <td>{{ $user->role->name }}</td>
                         <td>
                             <a class="btn btn-sm btn-info" href="{{ route('users.show', $user->id) }}">Show</a>
-                            {{-- @can('update-role') --}}
+                            @can('update-role')
                                 <a class="btn btn-sm btn-warning" href="{{ route('users.change_role', $user->id) }}">Change
                                     Role</a>
-                            {{-- @endcan --}}
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

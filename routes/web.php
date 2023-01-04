@@ -24,9 +24,9 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -88,8 +88,7 @@ Route::middleware('auth')->group(function () {
     // Route::resource('products', ProductController::class);
     // Route::resource('brands', BrandController::class);
 
-    // Route::fallback(function () {
-    //     echo "Apnar url thik nai";
-    // });
-
+    Route::fallback(function () {
+        echo "Apnar url thik nai";
+    });
 });
