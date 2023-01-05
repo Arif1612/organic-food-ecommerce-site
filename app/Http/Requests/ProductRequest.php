@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             $imageValidationRules = 'required|' . $imageValidationRules;
         }
         return [
-            'name' => 'required|min:03|max:255|unique:categories,name,' . $this->id,
+            'name' => 'required|min:03|max:255|unique:products,name,' . $this->id,
             'image' => $imageValidationRules
         ];
     }

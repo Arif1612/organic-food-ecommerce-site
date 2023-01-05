@@ -132,7 +132,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('backend.products.edit', compact('product'));
+        $categories = Category::pluck('name', 'id')->toArray();
+        return view('backend.products.edit', compact('product', 'categories'));
     }
 
     /**
