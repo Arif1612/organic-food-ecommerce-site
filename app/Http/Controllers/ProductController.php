@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -76,7 +77,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::pluck('name', 'id')->toArray();
-        return view('backend.products.create', compact('categories'));
+        $colors = Color::pluck('name', 'id')->toArray();
+        return view('backend.products.create', compact('categories', 'colors'));
     }
 
     /**

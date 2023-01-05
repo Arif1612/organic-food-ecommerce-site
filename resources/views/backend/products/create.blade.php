@@ -33,10 +33,12 @@
         <x-forms.textarea name='description' :value="old('description')" label="Description" cols="30" rows="5" />
 
         @php
-            $checklist = ['Is Active ?'];
+            $checklist = ['1' => 'Active'];
         @endphp
 
-        <x-forms.checkbox name="is_active" :checklist="$checklist" />
+        <x-forms.checkbox name="is_active" id="is_active" :checklist="$checklist" label="Is Available ?" />
+
+        <x-forms.checkbox name="colors[]" id="color" label="Colors" :checklist="$colors" />
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

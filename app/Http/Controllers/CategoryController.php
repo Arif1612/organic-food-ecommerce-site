@@ -94,7 +94,6 @@ class CategoryController extends Controller
     }
     public function store(CategoryRequest $request)
     {
-
         $fileName = $this->uploadImage($request->file('image'));
 
         $formData = [
