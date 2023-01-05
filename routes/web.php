@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -72,10 +73,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{id}/softDeleteShow', [ProductController::class, 'softDeleteShow'])->name('products.softDeleteShow');
 
 
+    // COLORS
+
+    Route::get('/colors/pdf', [ColorController::class, 'downloadPdf'])->name('colors.pdf');
+    Route::get('/colors/excel', [ColorController::class, 'downloadExcel'])->name('colors.excel');
+
+
+    // Softdelte Route
+    Route::get('/colors-trash', [ColorController::class, 'trash'])->name('colors.trash');
+    Route::get('/colors/{id}/restore', [ColorController::class, 'restore'])->name('colors.restore');
+    Route::delete('/colors/{id}/permanent/delete', [ColorController::class, 'delete'])->name('colors.delete');
+    Route::get('/colors/{id}/softDeleteShow', [ColorController::class, 'softDeleteShow'])->name('colors.softDeleteShow');
+
+
     // Resource Route
     Route::resources([
         'products' => ProductController::class,
         'brands' => BrandController::class,
+        'colors' => ColorController::class
     ]);
 
     Route::prefix('users')->group(function () {

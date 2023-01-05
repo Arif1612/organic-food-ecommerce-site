@@ -172,8 +172,8 @@
                 </a>
                 <ul id="products-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        {{-- <a href={{ route('colors.index') }}> --}}
-                        <i class="bi bi-circle-fill"></i><span>Colors List</span>
+                        <a href={{ route('colors.index') }}>
+                            <i class="bi bi-circle-fill"></i><span>Colors List</span>
                         </a>
                     </li>
                 </ul>
