@@ -57,6 +57,9 @@
 
         <x-forms.checkbox name="is_active" :checklist="$checklist" :checkedItems="$checkedItems" />
 
+        <x-forms.checkbox name="colors[]" id="color" label="Colors" :checklist="$colors" :checkedItems="$selectedColors" />
+
+
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

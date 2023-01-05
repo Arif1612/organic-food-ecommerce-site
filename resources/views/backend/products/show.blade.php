@@ -22,6 +22,18 @@
     <img width="200px" src="{{ $product->image }}" alt="">
     <img width="200px" src="{{ asset('storage/products/' . $product->image) }}" alt="">
 
+    <h1>
+        Colors:
+        <ol>
+            @foreach ($product->colors as $color)
+                <li>
+                    {{ $color->name }}
+                </li>
+            @endforeach
+        </ol>
+
+    </h1>
+
     <h1>Is Available: {{ $product->is_active ? 'Yes' : 'No' }} </h1>
 
 

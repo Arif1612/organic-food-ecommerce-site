@@ -110,6 +110,7 @@ class ProductController extends Controller
 
 
         $product = Product::create($formData);
+
         // many to many relationship with color
         $product->colors()->attach($request->colors);
 
@@ -138,7 +139,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::pluck('name', 'id')->toArray();
-        return view('backend.products.edit', compact('product', 'categories'));
+        $colors = Color::pluck('name', 'id')->toArray();
+
+        $selectedColors = $product->colors()->pluck('id')->toArray();
+
+        return view('backend.products.edit', compact('product', 'categories', 'colors', 'selectedColors'));
     }
 
     /**
