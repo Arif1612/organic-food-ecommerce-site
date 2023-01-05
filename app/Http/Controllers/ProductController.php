@@ -109,7 +109,10 @@ class ProductController extends Controller
         ];
 
 
-        Product::create($formData);
+        $product = Product::create($formData);
+        // many to many relationship with color
+        $product->colors()->attach($request->colors);
+
         return redirect()
             ->route('products.index')
             ->withMessage('Successfully Created');
