@@ -45,21 +45,22 @@
 
         @php
 
-            $checklist = ['Is Available ?'];
+            $checklist = [
+                '1' => 'Is Available ?',
+            ];
+            $checkedItems = [$product->is_active];
 
-            if ($product->is_active) {
-                $checkedItems = [0];
-            } else {
-                $checkedItems = [];
-            }
+            // if ($product->is_active) {
+            //     $checkedItems = [0];
+            // } else {
+            //     $checkedItems = [];
+            // }
 
         @endphp
 
         <x-forms.checkbox name="is_active" :checklist="$checklist" :checkedItems="$checkedItems" />
 
         <x-forms.checkbox name="colors[]" id="color" label="Colors" :checklist="$colors" :checkedItems="$selectedColors" />
-
-
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

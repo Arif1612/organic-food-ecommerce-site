@@ -168,6 +168,8 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         $product->update($formData);
+
+        $product->colors()->sync($request->colors);
         return redirect()
             ->route('products.index')
             ->withMessage('Successfully Updated');
@@ -182,6 +184,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        $product->colors()->detach();
         return redirect()
             ->route('products.index')
             ->withMessage('Successfully Deleted');
