@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('color_id')->references('id')->on('colors');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->primary('color_id', 'product_id');
+            $table->primary(['color_id', 'product_id']);
         });
     }
 

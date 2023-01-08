@@ -6,6 +6,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -22,12 +23,14 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
+Route::get('/', [WelcomeController::class, 'welcome'])->name('frontend');
+Route::get('/categories/{category}/products', [WelcomeController::class, 'productList'])->name('frontend.products');
+Route::get('/products/{product}', [WelcomeController::class, 'productDetails'])->name('frontend.products.show');
 
-Route::middleware('auth')->group(function () {
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     Route::get('/dashboard', function () {
         return view('dashboard');

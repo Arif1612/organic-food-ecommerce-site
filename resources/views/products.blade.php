@@ -13,7 +13,7 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
 
-            @foreach ($products as $product)
+            @foreach ($category->products as $product)
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
@@ -38,7 +38,7 @@
                 </div><!-- /.col-lg-4 -->
             @endforeach
 
-            {{ $products->links() }}
+            {{-- {{ $products->links() }} --}}
         </div><!-- /.container -->
 
 </x-frontend.master>
