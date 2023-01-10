@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class WelcomeController extends Controller
         } else {
             $products = Product::latest()->paginate(12);
         }
-
-        return view('welcome', compact('products'));
+        $carousels = Carousel::latest()->get();
+        return view('welcome', compact('products', 'carousels'));
     }
 
     public function productList(Category $category)

@@ -136,6 +136,20 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Carousels</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="categories-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href={{ route('carousels.create') }}>
+                            <i class="bi bi-circle-fill"></i><span>Create New Crousel</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Students</span><i
@@ -151,7 +165,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#products-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#products-nav" data-bs-toggle="collapse"
+                    href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Products</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>

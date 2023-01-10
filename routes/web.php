@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
@@ -42,7 +43,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
+    // carousels
+    Route::get('/carousels/create', [CarouselController::class, 'create'])->name('carousels.create');
+    Route::post('/carousels', [CarouselController::class, 'store'])->name('carousels.store');
 
+
+    // categories
     Route::get('/categories/pdf', [CategoryController::class, 'downloadPdf'])->name('categories.pdf');
     Route::get('/categories/excel', [CategoryController::class, 'downloadExcel'])->name('categories.excel');
 
