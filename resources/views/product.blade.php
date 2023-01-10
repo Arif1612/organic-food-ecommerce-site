@@ -33,4 +33,35 @@
             {{-- {{ $products->links() }} --}}
         </div><!-- /.container -->
 
+        <section>
+            @auth
+                <form action="{{ route('products.comments.store', $product->id) }}" method="post">
+                    @csrf
+                    <x-forms.textarea name="body" label="Your Comment" />
+                    <button class="btn btn-info" type="submit">Submit</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}"><button class="btn btn-info">Login To Comment</button></a>
+            @endauth
+        </section>
+
+        <section>
+            <h2>Comments</h2>
+            <ul>
+                @foreach ($product->comments as $comment)
+                    <li>
+                        <div>
+                            <h4>{{ $comment->commnetedBy->name }}
+                                <small><mark>{{ $comment->created_at->diffForHumans() }}</mark></small>
+                            </h4>
+                            <p>{{ $comment->body }}</p>
+
+                        </div>
+
+                    </li>
+                @endforeach
+            </ul>
+        </section>
+
+
 </x-frontend.master>

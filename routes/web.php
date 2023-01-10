@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -36,6 +37,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::post('/products/{product}/comments', [CommentController::class, 'store'])->name('products.comments.store');
 
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
