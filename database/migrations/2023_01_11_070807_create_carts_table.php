@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('product_id');
-            $table->morphs('commentable');
-            $table->unsignedBigInteger('commented_by');
-            $table->text('body');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->float('qty');
             $table->timestamps();
-            // $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('commented_by')->references('id')->on('users');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('carts');
     }
 };

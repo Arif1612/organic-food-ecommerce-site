@@ -21,6 +21,14 @@
                             @endforeach
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        @auth
+                            <a class="nav-link" href="{{ route('dashboard') }}"> Dashboard</a>
+                        @else
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        @endauth
+
+                    </li>
                 </ul>
                 <form class="d-flex" method="get">
                     <input name="keyword" class="form-control me-2" type="search" placeholder="Search"

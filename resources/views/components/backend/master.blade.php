@@ -78,7 +78,13 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="profileDetails.html">
                                 <i class="bi bi-person"></i>
+                                {{-- <span>{{ $user->name }}</span> --}}
                                 <span>My Profile</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('frontend') }}">
+                                <i class="bi bi-person"></i>
+                                {{-- <span>{{ $user->name }}</span> --}}
+                                <span>Website</span>
                             </a>
                         </li>
                         <li>

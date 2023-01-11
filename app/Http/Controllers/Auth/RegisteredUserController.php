@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\District;
 use App\Models\Profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -23,7 +24,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $districts = District::pluck('name', 'id')->toArray();
+        return view('auth.register', compact('districts'));
     }
 
     /**
@@ -47,6 +49,7 @@ class RegisteredUserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'role_id' => 1,
+                'district_id' => $request->district_id,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);

@@ -33,6 +33,13 @@
                 <x-input-error :messages="$errors->get('present_address')" class="mt-2" />
             </div>
 
+            <!-- District -->
+            <div class="mt-4">
+
+                <x-forms.select name="district_id" required label="District" :options="$districts" />
+
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />

@@ -14,4 +14,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class, 'commented_by');
     }
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }

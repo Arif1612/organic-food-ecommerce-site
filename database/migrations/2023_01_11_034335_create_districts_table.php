@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('product_id');
-            $table->morphs('commentable');
-            $table->unsignedBigInteger('commented_by');
-            $table->text('body');
+            $table->string('name');
             $table->timestamps();
-            // $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('commented_by')->references('id')->on('users');
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('districts');
     }
 };
